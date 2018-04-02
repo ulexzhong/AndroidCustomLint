@@ -12,10 +12,11 @@
 
 - 4、避免使用new Message(), 使用Message.Obtain()复用message  [`MessageObtainDetector.java`](./lintrules/src/main/java/com/ulexzhong/lintrules/detector/performance/MessageObtainDetector.java)
 
+- 5、避免直接调用new Thread()创建线程 [`ThreadCreateDetector.java`](./lintrules/src/main/java/com/ulexzhong/lintrules/detector/performance/ThreadCreateDetector.java)
  
 ### 代码规范
 
-- 1、layout文件命名，根据使用场景不同加前缀，目前暂时只处理Activity（activity_layout_）和Fragment（fragment_layout_）  [`ActivityFragmentLayoutNameDetector.java`](./lintrules/src/main/java/com/ulexzhong/lintrules/detector/standard/ActivityFragmentLayoutNameDetector.java)
+- 1、layout文件命名，根据使用场景不同加前缀，目前暂时只处理Activity（activity_）和Fragment（fragment_）  [`ActivityFragmentLayoutNameDetector.java`](./lintrules/src/main/java/com/ulexzhong/lintrules/detector/standard/ActivityFragmentLayoutNameDetector.java)
 
 - 2、需继承某一基类，目前只处理Activity作为基类的场景  （避免基类统一事件的漏处理） [`BaseActivityDetector.java`](./lintrules/src/main/java/com/ulexzhong/lintrules/detector/standard/BaseActivityDetector.java)
 
