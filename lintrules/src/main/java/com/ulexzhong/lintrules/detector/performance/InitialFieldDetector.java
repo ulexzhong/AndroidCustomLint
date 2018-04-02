@@ -29,7 +29,7 @@ public class InitialFieldDetector extends Detector implements Detector.JavaPsiSc
     public static final Issue ISSUE = Issue.create("InitialField",
             "初始化变量时不需要赋默认值",
             "初始化变量时不需要赋默认值，避免init<>上增加无用字节码",
-            Category.CORRECTNESS, 5, Severity.WARNING,
+            Category.PERFORMANCE, 5, Severity.WARNING,
             new Implementation(InitialFieldDetector.class, Scope.JAVA_FILE_SCOPE));
 
 
@@ -75,7 +75,7 @@ public class InitialFieldDetector extends Detector implements Detector.JavaPsiSc
 
                     String typeName = field.getType().getCanonicalText();
                     String value = literalExpression.getText();
-                    System.out.println("InitialChecker.field:" + field + ".value：" + value + ".type:" + typeName + ".initializer:" + initializer);
+//                    System.out.println("InitialChecker.field:" + field + ".value：" + value + ".type:" + typeName + ".initializer:" + initializer);
                     if (value == null || value.length() == 0) {
                         super.visitField(field);
                         return;

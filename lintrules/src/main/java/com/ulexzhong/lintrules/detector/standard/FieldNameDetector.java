@@ -82,7 +82,7 @@ public class FieldNameDetector extends Detector implements Detector.JavaPsiScann
                 }
             }else{
                 if(!fieldName.startsWith(FIELD_NAME_PREFIX_NOMAL)){
-                    mContext.report(ISSUE, mContext.getLocation(field.getNameIdentifier()), "field name with static should be started with m");
+                    mContext.report(ISSUE, mContext.getLocation(field.getNameIdentifier()), "field name should be started with m");
                 }
             }
             super.visitField(field);

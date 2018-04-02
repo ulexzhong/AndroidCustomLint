@@ -85,7 +85,7 @@ public class ActivityFragmentLayoutNameDetector extends Detector implements Dete
                     }
                 }
                 if (prefix != null) {
-                    context.report(ISSUE, context.getLocation(node), String.format(Locale.getDefault(), "%s的layout命名需用前缀：%s," + targetName, className, prefix));
+                    context.report(ISSUE, context.getLocation(node), String.format(Locale.getDefault(), "%s的layout命名需用前缀：%s", className, prefix));
                 }
             }
         }

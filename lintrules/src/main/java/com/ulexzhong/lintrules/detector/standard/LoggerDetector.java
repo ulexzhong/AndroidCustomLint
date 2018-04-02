@@ -21,6 +21,31 @@ import lombok.ast.Node;
  * Created by ulexzhong on 2018/3/5.
  * 避免使用System.out.println或者android.os.Log,提示用户使用团队内定制LogUtil
  */
+//public class LoggerDetector extends Detector implements Detector.JavaPsiScanner {
+//    public static final Issue ISSUE = Issue.create("LogUse",
+//            "避免使用Log/System.out.println",
+//            "请使用LogUtils，避免在正式包中打印log",
+//            Category.CORRECTNESS, 5, Severity.WARNING,
+//            new Implementation(LoggerDetector.class, Scope.JAVA_FILE_SCOPE));
+//
+//    @Override
+//    public List<String> getApplicableMethodNames() {
+//        return Arrays.asList("v", "d", "i", "w", "e", "wtf", "print", "println");
+//    }
+//
+//    @Override
+//    public void visitMethod(JavaContext context, JavaElementVisitor visitor, PsiMethodCallExpression call, PsiMethod method) {
+//        if (!context.isEnabled(ISSUE)) {
+//            return;
+//        }
+//        System.out.println("visitMethod:" + method);
+//        if (context.getEvaluator().isMemberInClass(method, "android.util.Log")) {
+//            context.report(ISSUE, context.getLocation(call.getMethodExpression()), "请勿使用android.util.Log，应该使用统一工具类");
+//        } else if (context.getEvaluator().isMemberInClass(method, "java.io.PrintStream")) {
+//            context.report(ISSUE, context.getLocation(call.getMethodExpression()), "请勿使用System.out.print，应该使用统一工具类");
+//        }
+//    }
+//}
 public class LoggerDetector extends Detector implements Detector.JavaScanner {
 
     public static final Issue ISSUE=Issue.create("LogUse",

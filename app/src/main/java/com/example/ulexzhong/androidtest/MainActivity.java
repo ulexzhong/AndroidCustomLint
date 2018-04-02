@@ -7,28 +7,32 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
 
-    private static Activity context;
+    private static Activity context = null;
+
     private int mNum = 0;
     private long mLong = 0;
     private char mChar = '\u0000';
     private float mFloat = 0.0f;
-    private double mDouble = 0;
+    private double mDouble = 0.0d;
     private boolean mBoolean = false;
     private short mShort = 0;
     private byte mByte = 0;
+    private String mStr = null;
 
     private static final String EXTRA_KEY = "";
     private static final String sss = "dddd";
     private String n;
-    private String mStr = null;
+
 
     HashMap<Integer, Integer> nn;
     private static String zhong = "ssss";
@@ -48,7 +52,7 @@ public class MainActivity extends Activity {
         //        new Handler().sendMessage(msg);
         //        Toast.makeText(this,"sss",111);
         Intent intent = new Intent();
-        intent.putExtra(TestUtil.KEY, "ddd");
+        intent.putExtra("sss", "ddd");
 
         TestEnum testEnum = TestEnum.TWO;
 
@@ -70,6 +74,25 @@ public class MainActivity extends Activity {
         testHasp(test.map);
         HashMap<String, Integer> mm = new HashMap<>();
         System.out.println("" + mNum);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();
+        new MyThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();
+    }
+
+    private class MyThread extends Thread {
+        MyThread(Runnable runnable) {
+            super(runnable);
+        }
     }
 
     //Hash
@@ -80,32 +103,37 @@ public class MainActivity extends Activity {
     }
 
     private void testStream() {
+        int m=0;
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(new File("test.txt"));
-            inputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
-            //            try{
-            //                inputStream.close();
-            //            }catch (Exception e1){
-            //                e1.printStackTrace();
-            //            }
         } finally {
-            try {
-                //                if (inputStream != null) {
-                //                    inputStream.close();
-                //                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            //            try {
+            //                if (inputStream != null) {
+            //                    inputStream.close();
+            //                }
+            //            } catch (Exception e) {
+            //                e.printStackTrace();
+            //            }
         }
     }
 
-    private class Test {
-        Map<Integer, Integer> map;
+    private void close(Closeable closeable) {
+        try {
+            closeable.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static class Test {
+        private static Activity mContext;
+        Map<Integer, Integer> map=null;
         public static final int TIME = 1;
-        String m;
+        int num=0;
+        String m=null;
     }
 
     private void m() {
